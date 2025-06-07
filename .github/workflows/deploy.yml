@@ -30,6 +30,15 @@ jobs:
           name: github-pages
           path: dist/
 
+      - name: Validate build output
+        run: |
+          ls -la dist/
+          du -sh dist/
+          if [ -L "dist/index.html" ]; then
+            echo "Error: Symlinks detected in build output!"
+            exit 1
+          fi
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
