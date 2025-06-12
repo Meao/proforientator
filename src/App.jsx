@@ -102,7 +102,7 @@ const HolisticProfessionPredictor = () => {
   return (
     <div className="app-container">
       <div className="header">
-        <h1 className="title">Profession Fit Test</h1>
+        <h1 className="title">AI Profession Fit Test</h1>
         <p className="subtitle">
           Rate yourself across key dimensions. Our algorithm considers trait interactions, synergies, and overall patterns.
         </p>
