@@ -9,7 +9,6 @@ const dimensions = {
     "Creative Processing": [
       "Creative thinking",
       "Abstract thinking",
-      "Innovative problem-solving",
       "Conceptual thinking"
     ],
     "Information Processing": [
@@ -40,7 +39,6 @@ const dimensions = {
     ],
     "Collaboration Style": [
       "Team collaboration skills",
-      "Leadership inclination",
       "Conflict resolution ability",
       "Networking comfort"
     ],
@@ -53,10 +51,10 @@ const dimensions = {
   },
   "Work Style & Environment": {
     "Structure Preferences": [
-      "Structured environment thriving",
-      "Routine work satisfaction",
-      "Process-focused approach",
-      "Systematic execution"
+      "Thrives in structured environments",
+      "Prefers routine tasks",
+      "Focuses on processes",
+      "Works systematically"
     ],
     "Independence & Autonomy": [
       "Autonomous work capability",
@@ -71,15 +69,14 @@ const dimensions = {
       "Adaptability to change"
     ],
     "Work Environment": [
-      "Remote work effectiveness",
-      "Open office comfort",
-      "Travel adaptability",
-      "Noise resilience"
+      "Effective at remote work",
+      "Comfortable in open offices",
+      "Adaptable to travel",
+      "Handles noisy environments"
     ]
   },
   "Professional Skills": {
     "Core Competencies": [
-      "Problem-solving expertise",
       "Organization and planning",
       "Time management",
       "Quality assurance"
@@ -119,8 +116,7 @@ const dimensions = {
     "Personality Style": [
       "Optimistic outlook",
       "Patience and persistence",
-      "Calculated risk-taking",
-      "Creative spontaneity"
+      "Calculated risk-taking"
     ],
     "Interpersonal Style": [
       "Assertive communication",
@@ -183,14 +179,6 @@ const dimensions = {
   }
 };
 
-// Flattened version for algorithm compatibility
-const flattenedDimensions = {};
-Object.entries(dimensions).forEach(([mainCategory, subCategories]) => {
-  Object.entries(subCategories).forEach(([subCategory, traits]) => {
-    flattenedDimensions[`${mainCategory} - ${subCategory}`] = traits;
-  });
-});
-
 const categoryDescriptions = {
   "Thinking Style": "How you process information and approach problems",
   "Social & Communication": "How you interact with others and communicate",
@@ -201,9 +189,21 @@ const categoryDescriptions = {
   "Physical & Practical": "Physical abilities and practical considerations"
 };
 
+// Extract ALL traits as a flat list (no categories)
+function extractAllTraits(dimensionsData) {
+  const traits = [];
+  Object.values(dimensionsData).forEach(category => {
+    Object.values(category).forEach(subCategory => {
+      subCategory.forEach(trait => traits.push(trait));
+    });
+  });
+  return traits;
+}
+
+const allTraits = extractAllTraits(dimensions);
 
 export {
   dimensions,
-  flattenedDimensions,
+  allTraits,
   categoryDescriptions
 };

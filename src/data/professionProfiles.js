@@ -1,3 +1,10 @@
+import { allTraits } from "./dimensions";
+
+export const genericProfession = {
+  name: "GENERIC TEST PROFILE",
+  traitRanges: Object.fromEntries(allTraits.map(trait => [trait, [0, 9]]))
+};
+
 export const professionProfiles = {
   "Software Engineer": {
     corePattern: {
@@ -8,11 +15,11 @@ export const professionProfiles = {
       "Autonomous work capability": [5, 10]
     },
     synergies: [
-      {traits: ["Creative thinking", "Abstract thinking"], bonus: 0.2},
-      {traits: ["Systematic execution", "Quality assurance"], bonus: 0.15}
+      { traits: ["Creative thinking", "Abstract thinking"], bonus: 0.2 },
+      { traits: ["Systematic execution", "Quality assurance"], bonus: 0.15 }
     ],
     antiPatterns: [
-      {traits: ["Extroverted energy", "Public speaking ability"], penalty: 0.1}
+      { traits: ["Extroverted energy", "Public speaking ability"], penalty: 0.1 }
     ],
     environment: "Structured technical environment with problem-solving focus"
   },
@@ -26,11 +33,11 @@ export const professionProfiles = {
       "Design and aesthetics": [7, 10]
     },
     synergies: [
-      {traits: ["Innovative problem-solving", "Conceptual thinking"], bonus: 0.25},
-      {traits: ["User-centered focus", "Cultural adaptability"], bonus: 0.2}
+      { traits: ["Innovative problem-solving", "Conceptual thinking"], bonus: 0.25 },
+      { traits: ["User-centered focus", "Cultural adaptability"], bonus: 0.2 }
     ],
     antiPatterns: [
-      {traits: ["Routine work satisfaction", "Process-focused approach"], penalty: 0.15}
+      { traits: ["Routine work satisfaction", "Process-focused approach"], penalty: 0.15 }
     ],
     environment: "Creative, collaborative spaces with user research components"
   },
@@ -163,6 +170,7 @@ export const professionProfiles = {
 
   "Emergency Room Physician": {
     corePattern: {
+      "Analytical reasoning": [7, 10],
       "Quick learning ability": [8, 10],
       "Decision-making confidence": [8, 10],
       "Crisis management": [8, 10],
@@ -343,88 +351,105 @@ export const professionProfiles = {
 
   "Industrial Designer": {
     corePattern: {
-      "Creative thinking": [7, 10],
-      "Systems thinking": [6, 10],
       "Design and aesthetics": [7, 10],
-      "Technical proficiency": [6, 10],
-      "Problem-solving expertise": [6, 10]
+      "Creative thinking": [7, 10],
+      "Fine motor coordination": [7, 10],
+      "Visual acuity": [6, 9],
+      "Problem-solving expertise": [6, 9]
     },
     synergies: [
-      {traits: ["Innovative problem-solving", "Conceptual thinking"], bonus: 0.3},
-      {traits: ["User-centered focus", "Functional design sense"], bonus: 0.25}
+      { "traits": ["Abstract thinking", "Spatial reasoning"], "bonus": 0.3 },
+      { "traits": ["Manual dexterity", "Artistic and creative abilities"], "bonus": 0.25 }
     ],
     antiPatterns: [
-      {traits: ["Routine work satisfaction", "Process-focused approach"], penalty: 0.2}
+      { "traits": ["Prefers routine tasks", "Structured environments"], "penalty": 0.2 }
     ],
-    environment: "Product development teams blending form and function"
+    environment: "Design studios, manufacturing plants, hands-on prototyping"
   },
 
   // Retail & Customer Service
-  "Shop Assistant": {
+   "Tattooer": {
     corePattern: {
-      "Helping others drive": [4, 9],
-      "Communication comfort": [4, 8],
-      "Patience": [4, 8],
-      "Adaptability": [3, 8]
+      "Artistic and creative abilities": [8, 10],
+      "Manual dexterity": [7, 10],
+      "Attention to detail": [7, 10],
+      "Client-facing confidence": [6, 9]
     },
     synergies: [
-      {traits: ["Empathy", "Active listening"], bonus: 0.2},
-      {traits: ["Product knowledge", "Sales skills"], bonus: 0.15}
+      {traits: ["Design and aesthetics", "Fine motor coordination"], bonus: 0.25},
+      {traits: ["Cultural adaptability", "Empathy and understanding"], bonus: 0.2}
     ],
     antiPatterns: [
-      {traits: ["Introversion", "Conflict avoidance"], penalty: 0.1}
+      {traits: ["Routine work satisfaction", "Structured environment thriving"], penalty: 0.2}
+    ],
+    environment: "Creative studio environment with client interaction"
+  },
+
+  "Shop Assistant": {
+    corePattern: {
+      "Helping others drive": [6, 9],
+      "Client-facing confidence": [6, 9],
+      "Patience and persistence": [5, 8],
+      "Adaptability to change": [5, 8]
+    },
+    synergies: [
+      {traits: ["Empathy and understanding", "Active listening skills"], bonus: 0.2},
+      {traits: ["Sales and persuasion", "Product knowledge"], bonus: 0.15}
+    ],
+    antiPatterns: [
+      {traits: ["Autonomous work capability", "Independent judgment"], penalty: 0.15}
     ],
     environment: "Customer-focused, social, varied daily tasks"
   },
 
   "Cashier": {
     corePattern: {
-      "Attention to detail": [5, 9],
-      "Math skills": [3, 7],
-      "Customer service": [3, 8],
-      "Routine tolerance": [4, 9]
+      "Attention to detail": [6, 9],
+      "Mathematical skills": [4, 7],
+      "Customer service excellence": [5, 8],
+      "Routine work satisfaction": [5, 9]
     },
     synergies: [
-      {traits: ["Speed", "Accuracy"], bonus: 0.2},
-      {traits: ["Patience", "Stress management"], bonus: 0.15}
+      {traits: ["Systematic execution", "Process-focused approach"], bonus: 0.2},
+      {traits: ["Patience and persistence", "Stress management"], bonus: 0.15}
     ],
     antiPatterns: [
-      {traits: ["Creativity need", "Variety seeking"], penalty: 0.15}
+      {traits: ["Creative spontaneity", "Variety and change comfort"], penalty: 0.2}
     ],
     environment: "Fast-paced, repetitive, customer interaction"
   },
 
   // Administrative & Data
-  "Data Entry": {
+  "Data Entry Clerk": {
     corePattern: {
-      "Attention to detail": [6, 9],
-      "Typing speed": [5, 9],
-      "Concentration": [5, 9],
-      "Routine tolerance": [5, 9]
+      "Attention to detail": [7, 10],
+      "Focuses on processes": [6, 9],
+      "Sustained concentration": [6, 9],
+      "Prefers routine tasks": [6, 9]
     },
     synergies: [
-      {traits: ["Accuracy", "Speed"], bonus: 0.25},
-      {traits: ["Organization", "Systematic approach"], bonus: 0.15}
+      { "traits": ["Works systematically", "Quality assurance"], "bonus": 0.25 },
+      { "traits": ["Time management", "Organization and planning"], "bonus": 0.2 }
     ],
     antiPatterns: [
-      {traits: ["Social interaction need", "Creativity need"], penalty: 0.2}
+      { "traits": ["Creative thinking", "Variety and change comfort"], "penalty": 0.25 }
     ],
     environment: "Quiet, focused, repetitive, computer-based"
   },
 
   "Secretary": {
     corePattern: {
-      "Organization": [5, 9],
-      "Communication skills": [4, 8],
-      "Multitasking": [4, 8],
-      "Attention to detail": [4, 8]
+      "Organization and planning": [6, 9],
+      "Written communication strength": [6, 9],
+      "Multitasking capability": [5, 9],
+      "Attention to detail": [5, 8]
     },
     synergies: [
-      {traits: ["Time management", "Prioritization"], bonus: 0.2},
-      {traits: ["Interpersonal skills", "Diplomacy"], bonus: 0.15}
+      { "traits": ["Time management", "Focuses on processes"], "bonus": 0.25 },
+      { "traits": ["Diplomatic communication", "Cultural adaptability"], "bonus": 0.2 }
     ],
     antiPatterns: [
-      {traits: ["Disorganization", "Poor communication"], penalty: 0.2}
+      { "traits": ["Independent judgment", "Self-directed work"], "penalty": 0.15 }
     ],
     environment: "Office-based, varied tasks, interpersonal interaction"
   },
@@ -432,51 +457,51 @@ export const professionProfiles = {
   // Education & Training
   "Language Tutor": {
     corePattern: {
-      "Teaching ability": [5, 9],
-      "Language skills": [6, 9],
-      "Patience": [5, 9],
-      "Communication skills": [5, 9]
+      "Teaching and mentoring": [7, 10],
+      "Communication abilities": [7, 10],
+      "Patience and persistence": [6, 9],
+      "Cultural adaptability": [6, 9]
     },
     synergies: [
-      {traits: ["Cultural awareness", "Empathy"], bonus: 0.2},
-      {traits: ["Adaptability", "Creativity"], bonus: 0.15}
+      {traits: ["Educational passion", "Learning orientation"], bonus: 0.25},
+      {traits: ["Active listening skills", "Empathy and understanding"], bonus: 0.2}
     ],
     antiPatterns: [
-      {traits: ["Impatience", "Poor listening"], penalty: 0.2}
+      {traits: ["Independent judgment", "Autonomous work capability"], penalty: 0.1}
     ],
     environment: "Educational, one-on-one or small groups, flexible"
   },
 
   "Programming Tutor": {
     corePattern: {
-      "Technical knowledge": [6, 9],
-      "Teaching ability": [5, 9],
-      "Problem-solving": [5, 9],
-      "Patience": [5, 8]
+      "Technical proficiency": [7, 10],
+      "Teaching and mentoring": [6, 9],
+      "Complex problem handling": [6, 9],
+      "Patience and persistence": [5, 8]
     },
     synergies: [
-      {traits: ["Analytical thinking", "Communication"], bonus: 0.2},
-      {traits: ["Mentoring", "Technical writing"], bonus: 0.15}
+      {traits: ["Analytical reasoning", "Logical reasoning"], bonus: 0.3},
+      {traits: ["Documentation skills", "Quality assurance"], bonus: 0.2}
     ],
     antiPatterns: [
-      {traits: ["Impatience", "Poor explanation skills"], penalty: 0.2}
+      {traits: ["Public speaking ability", "Extroverted energy"], penalty: 0.15}
     ],
     environment: "Educational, technical, problem-solving focused"
   },
 
   "Babysitter": {
     corePattern: {
-      "Patience": [6, 9],
-      "Responsibility": [6, 9],
-      "Energy level": [4, 8],
-      "Safety awareness": [7, 9]
+      "Patience and persistence": [7, 10],
+      "Empathy and understanding": [6, 9],
+      "Energy sustainability": [5, 8],
+      "Safety awareness": [7, 10]
     },
     synergies: [
-      {traits: ["Creativity", "Playfulness"], bonus: 0.2},
-      {traits: ["Communication", "Problem-solving"], bonus: 0.15}
+      {traits: ["Creative thinking", "Teaching and mentoring"], bonus: 0.2},
+      {traits: ["Active listening skills", "Emotional intelligence"], bonus: 0.15}
     ],
     antiPatterns: [
-      {traits: ["Impatience", "Irresponsibility"], penalty: 0.3}
+      {traits: ["Independent judgment", "Autonomous work capability"], penalty: 0.1}
     ],
     environment: "Home-based, child-focused, varied activities"
   },
@@ -484,17 +509,17 @@ export const professionProfiles = {
   // Counseling & Mental Health
   "Counselor": {
     corePattern: {
-      "Empathy": [6, 9],
-      "Active listening": [6, 9],
-      "Emotional intelligence": [6, 9],
-      "Patience": [6, 9]
+      "Empathy and understanding": [8, 10],
+      "Active listening skills": [8, 10],
+      "Emotional intelligence": [8, 10],
+      "Patience and persistence": [7, 10]
     },
     synergies: [
-      {traits: ["Psychology knowledge", "Communication skills"], bonus: 0.25},
-      {traits: ["Non-judgmental attitude", "Problem-solving"], bonus: 0.2}
+      {traits: ["Reflective depth", "Cultural adaptability"], bonus: 0.3},
+      {traits: ["Service orientation", "Helping others drive"], bonus: 0.25}
     ],
     antiPatterns: [
-      {traits: ["Judgmental attitude", "Emotional instability"], penalty: 0.3}
+      {traits: ["Competitive motivation", "Financial motivation"], penalty: 0.3}
     ],
     environment: "Supportive, confidential, emotionally demanding"
   },
@@ -502,85 +527,85 @@ export const professionProfiles = {
   // Tech Specialized
   "Backend Programmer": {
     corePattern: {
-      "Logical thinking": [6, 9],
-      "Systems architecture": [5, 9],
-      "Database knowledge": [5, 9],
-      "Problem-solving": [5, 9]
+      "Logical reasoning": [8, 10],
+      "Technical proficiency": [8, 10],
+      "Complex problem handling": [7, 10],
+      "Systematic execution": [6, 9]
     },
     synergies: [
-      {traits: ["Analytical reasoning", "Detail orientation"], bonus: 0.2},
-      {traits: ["Performance optimization", "Security awareness"], bonus: 0.15}
+      { traits: ["Analytical reasoning", "Pattern recognition"], bonus: 0.35 },
+      { traits: ["Documentation skills", "Quality assurance"], bonus: 0.25 }
     ],
     antiPatterns: [
-      {traits: ["UI/UX focus", "Visual design"], penalty: 0.1}
+      { traits: ["Public speaking ability", "Client-facing confidence"], penalty: 0.15 }
     ],
     environment: "Technical, logic-focused, system architecture"
   },
 
   "Frontend Programmer": {
     corePattern: {
-      "Visual design sense": [4, 8],
-      "User experience focus": [5, 9],
-      "Technical skills": [5, 9],
-      "Creativity": [4, 8]
+      "Creative thinking": [7, 10],
+      "Technical proficiency": [7, 10],
+      "Attention to detail": [6, 9],
+      "Design and aesthetics": [5, 8]
     },
     synergies: [
-      {traits: ["Aesthetic sense", "User empathy"], bonus: 0.2},
-      {traits: ["Problem-solving", "Detail orientation"], bonus: 0.15}
+      {traits: ["User empathy", "Client-facing confidence"], bonus: 0.3},
+      {traits: ["Innovative problem-solving", "Conceptual thinking"], bonus: 0.25}
     ],
     antiPatterns: [
-      {traits: ["Backend focus only", "Poor visual sense"], penalty: 0.15}
+      {traits: ["Routine work satisfaction", "Process-focused approach"], penalty: 0.2}
     ],
     environment: "Visual, user-focused, creative-technical hybrid"
   },
 
   "QA Specialist": {
     corePattern: {
-      "Attention to detail": [7, 9],
-      "Analytical thinking": [5, 9],
-      "Persistence": [5, 9],
-      "Communication skills": [4, 8]
+      "Attention to detail": [8, 10],
+      "Analytical reasoning": [6, 9],
+      "Patience and persistence": [6, 9],
+      "Quality assurance": [7, 10]
     },
     synergies: [
-      {traits: ["Critical thinking", "Documentation"], bonus: 0.2},
-      {traits: ["Process orientation", "Problem identification"], bonus: 0.15}
+      {traits: ["Systematic execution", "Process-focused approach"], bonus: 0.3},
+      {traits: ["Documentation skills", "Technical writing"], bonus: 0.2}
     ],
     antiPatterns: [
-      {traits: ["Impatience", "Poor documentation"], penalty: 0.2}
+      {traits: ["Creative spontaneity", "Variety seeking"], penalty: 0.25}
     ],
     environment: "Detail-oriented, process-driven, quality-focused"
   },
 
   "Manual Tester": {
     corePattern: {
-      "Attention to detail": [6, 9],
-      "Patience": [5, 9],
-      "Following procedures": [5, 9],
-      "Documentation": [4, 8]
+      "Attention to detail": [7, 10],
+      "Analytical reasoning": [6, 9],
+      "Effective at remote work": [6, 9],
+      "Documentation skills": [5, 8]
     },
     synergies: [
-      {traits: ["Systematic approach", "Persistence"], bonus: 0.2},
-      {traits: ["Bug reporting", "Process adherence"], bonus: 0.15}
+      { "traits": ["Written communication strength", "Focuses on processes"], "bonus": 0.25 },
+      { "traits": ["Time management", "Works systematically"], "bonus": 0.2 }
     ],
     antiPatterns: [
-      {traits: ["Impatience", "Procedure avoidance"], penalty: 0.2}
+      { "traits": ["Creative thinking", "Variety and change comfort"], "penalty": 0.2 }
     ],
-    environment: "Structured, procedural, detail-focused"
+    environment: "Detail-oriented, process-driven, quality-focused"
   },
 
   "Prompt Engineer": {
     corePattern: {
-      "Language skills": [6, 9],
-      "Analytical thinking": [5, 9],
-      "Creativity": [5, 8],
-      "Technical understanding": [4, 8]
+      "Creative thinking": [7, 10],
+      "Analytical reasoning": [6, 9],
+      "Technical proficiency": [5, 8],
+      "Written communication strength": [6, 9]
     },
     synergies: [
-      {traits: ["AI knowledge", "Experimentation"], bonus: 0.25},
-      {traits: ["Problem-solving", "Communication"], bonus: 0.15}
+      { "traits": ["Conceptual thinking", "Innovative problem-solving"], "bonus": 0.3 },
+      { "traits": ["Learning orientation", "Intellectual stimulation"], "bonus": 0.25 }
     ],
     antiPatterns: [
-      {traits: ["Poor language skills", "Lack of curiosity"], penalty: 0.2}
+      { "traits": ["Prefers routine tasks", "Thrives in structured environments"], "penalty": 0.2 }
     ],
     environment: "Emerging field, experimental, AI-focused"
   },
@@ -588,34 +613,34 @@ export const professionProfiles = {
   // Business & Analysis
   "Business Analyst": {
     corePattern: {
-      "Analytical thinking": [5, 9],
-      "Communication skills": [5, 9],
-      "Problem-solving": [5, 9],
-      "Documentation": [4, 8]
+      "Analytical reasoning": [7, 10],
+      "Communication abilities": [6, 9],
+      "Problem-solving expertise": [6, 9],
+      "Strategic thinking": [5, 8]
     },
     synergies: [
-      {traits: ["Requirements gathering", "Stakeholder management"], bonus: 0.2},
-      {traits: ["Process mapping", "Critical thinking"], bonus: 0.15}
+      {traits: ["Systems thinking", "Big picture thinking"], bonus: 0.3},
+      {traits: ["Presentation skills", "Persuasive abilities"], bonus: 0.25}
     ],
     antiPatterns: [
-      {traits: ["Poor communication", "Lack of analysis"], penalty: 0.2}
+      {traits: ["Independent judgment", "Autonomous work capability"], penalty: 0.1}
     ],
     environment: "Business-focused, analytical, communication-heavy"
   },
 
   "Systems Analyst": {
     corePattern: {
-      "Systems thinking": [6, 9],
-      "Technical knowledge": [5, 9],
-      "Problem-solving": [5, 9],
-      "Documentation": [5, 8]
+      "Analytical reasoning": [7, 10],
+      "Technical proficiency": [6, 9],
+      "Complex problem handling": [6, 9],
+      "Systems thinking": [6, 9]
     },
     synergies: [
-      {traits: ["Analytical reasoning", "Process optimization"], bonus: 0.2},
-      {traits: ["Technical communication", "Requirements analysis"], bonus: 0.15}
+      {traits: ["Strategic thinking", "Big picture thinking"], bonus: 0.3},
+      {traits: ["Documentation skills", "Quality assurance"], bonus: 0.25}
     ],
     antiPatterns: [
-      {traits: ["Poor technical skills", "Lack of systems view"], penalty: 0.2}
+      {traits: ["Creative spontaneity", "Variety seeking"], penalty: 0.2}
     ],
     environment: "Technical, systems-focused, analytical"
   },
@@ -623,34 +648,34 @@ export const professionProfiles = {
   // Sales & Marketing
   "Sales Manager": {
     corePattern: {
-      "Leadership": [5, 9],
-      "Communication skills": [6, 9],
-      "Motivation": [5, 9],
-      "Results orientation": [5, 9]
+      "Leadership inclination": [7, 10],
+      "Persuasive abilities": [7, 10],
+      "Competitive motivation": [6, 9],
+      "Client-facing confidence": [7, 10]
     },
     synergies: [
-      {traits: ["Persuasion", "Team building"], bonus: 0.2},
-      {traits: ["Strategic thinking", "Customer focus"], bonus: 0.15}
+      {traits: ["Networking comfort", "Extroverted energy"], bonus: 0.3},
+      {traits: ["Strategic thinking", "Achievement orientation"], bonus: 0.25}
     ],
     antiPatterns: [
-      {traits: ["Introversion", "Conflict avoidance"], penalty: 0.2}
+      {traits: ["Independent judgment", "Autonomous work capability"], penalty: 0.1}
     ],
     environment: "Leadership, results-driven, people-focused"
   },
 
   "Telemarketer": {
     corePattern: {
-      "Communication skills": [5, 9],
-      "Persistence": [6, 9],
-      "Rejection resilience": [6, 9],
-      "Persuasion": [4, 8]
+      "Sales and persuasion": [6, 9],
+      "Patience and persistence": [6, 9],
+      "Client-facing confidence": [5, 8],
+      "Extroverted energy": [5, 8]
     },
     synergies: [
-      {traits: ["Sales skills", "Product knowledge"], bonus: 0.2},
-      {traits: ["Voice quality", "Enthusiasm"], bonus: 0.15}
+      {traits: ["Active listening skills", "Communication abilities"], bonus: 0.2},
+      {traits: ["Sales and persuasion", "Presentation skills"], bonus: 0.15}
     ],
     antiPatterns: [
-      {traits: ["Sensitivity to rejection", "Poor communication"], penalty: 0.3}
+      {traits: ["Independent judgment", "Autonomous work capability"], penalty: 0.1}
     ],
     environment: "Phone-based, sales-focused, high rejection rate"
   },
@@ -658,17 +683,17 @@ export const professionProfiles = {
   // Tourism & Hospitality
   "Tourist Guide": {
     corePattern: {
-      "Communication skills": [6, 9],
-      "Cultural knowledge": [5, 9],
-      "Public speaking": [5, 9],
-      "Energy level": [5, 8]
+      "Public speaking ability": [7, 10],
+      "Cultural adaptability": [6, 9],
+      "Extroverted energy": [6, 9],
+      "Teaching and mentoring": [5, 8]
     },
     synergies: [
-      {traits: ["Storytelling", "Enthusiasm"], bonus: 0.2},
-      {traits: ["Language skills", "Cultural sensitivity"], bonus: 0.15}
+      {traits: ["Active listening skills", "Empathy and understanding"], bonus: 0.25},
+      {traits: ["Presentation skills", "Client-facing confidence"], bonus: 0.2}
     ],
     antiPatterns: [
-      {traits: ["Introversion", "Poor knowledge"], penalty: 0.2}
+      {traits: ["Independent judgment", "Autonomous work capability"], penalty: 0.1}
     ],
     environment: "Outdoor, social, educational, cultural"
   },
@@ -676,17 +701,17 @@ export const professionProfiles = {
   // Finance
   "Financial Advisor": {
     corePattern: {
-      "Analytical thinking": [5, 9],
-      "Communication skills": [5, 9],
-      "Trustworthiness": [7, 9],
-      "Financial knowledge": [6, 9]
+      "Analytical reasoning": [7, 10],
+      "Sales and persuasion": [6, 9],
+      "Strategic thinking": [6, 9],
+      "Client-facing confidence": [6, 9]
     },
     synergies: [
-      {traits: ["Empathy", "Long-term thinking"], bonus: 0.2},
-      {traits: ["Risk assessment", "Client relationships"], bonus: 0.15}
+      {traits: ["Active listening skills", "Empathy and understanding"], bonus: 0.3},
+      {traits: ["Sales and persuasion", "Presentation skills"], bonus: 0.25}
     ],
     antiPatterns: [
-      {traits: ["Unethical behavior", "Poor math skills"], penalty: 0.3}
+      {traits: ["Creative spontaneity", "Variety seeking"], penalty: 0.2}
     ],
     environment: "Advisory, analytical, relationship-based"
   },
@@ -694,17 +719,17 @@ export const professionProfiles = {
   // Agile & Coaching
   "Agile Coach": {
     corePattern: {
-      "Coaching ability": [6, 9],
-      "Agile knowledge": [6, 9],
-      "Communication skills": [6, 9],
-      "Change management": [5, 9]
+      "Teaching and mentoring": [7, 10],
+      "Leadership inclination": [6, 9],
+      "Sales and persuasion": [7, 10],
+      "Collaborative spirit": [7, 10]
     },
     synergies: [
-      {traits: ["Facilitation", "Team dynamics"], bonus: 0.2},
-      {traits: ["Continuous improvement", "Adaptability"], bonus: 0.15}
+      {traits: ["Active listening skills", "Conflict resolution ability"], bonus: 0.3},
+      {traits: ["Strategic thinking", "Big picture thinking"], bonus: 0.25}
     ],
     antiPatterns: [
-      {traits: ["Rigid mindset", "Poor interpersonal skills"], penalty: 0.2}
+      {traits: ["Independent judgment", "Autonomous work capability"], penalty: 0.2}
     ],
     environment: "Team-focused, change-oriented, coaching"
   },
@@ -712,17 +737,17 @@ export const professionProfiles = {
   // Creative & Design
   "3D Designer": {
     corePattern: {
-      "Creativity": [6, 9],
-      "Visual skills": [6, 9],
-      "Technical proficiency": [5, 9],
-      "Attention to detail": [5, 8]
+      "Creative thinking": [7, 10],
+      "Design and aesthetics": [7, 10],
+      "Technical proficiency": [6, 9],
+      "Attention to detail": [6, 9]
     },
     synergies: [
-      {traits: ["Spatial reasoning", "Artistic ability"], bonus: 0.25},
-      {traits: ["Software proficiency", "Problem-solving"], bonus: 0.15}
+      { traits: ["Innovative problem-solving", "Conceptual thinking"], bonus: 0.3 },
+      { traits: ["Visual acuity", "Environmental adaptability"], bonus: 0.2 }
     ],
     antiPatterns: [
-      {traits: ["Poor visual sense", "Lack of creativity"], penalty: 0.3}
+      { traits: ["Routine work satisfaction", "Process-focused approach"], penalty: 0.25 }
     ],
     environment: "Creative, technical, visual-focused"
   },
@@ -730,85 +755,85 @@ export const professionProfiles = {
   // Writing & Translation
   "Technical Writer": {
     corePattern: {
-      "Writing skills": [6, 9],
-      "Technical understanding": [5, 9],
-      "Clarity of expression": [6, 9],
-      "Attention to detail": [5, 8]
+      "Written communication strength": [8, 10],
+      "Technical proficiency": [6, 9],
+      "Attention to detail": [7, 10],
+      "Documentation skills": [7, 10]
     },
     synergies: [
-      {traits: ["Research skills", "User empathy"], bonus: 0.2},
-      {traits: ["Documentation", "Process understanding"], bonus: 0.15}
+      {traits: ["Analytical reasoning", "Complex problem handling"], bonus: 0.3},
+      {traits: ["Quality assurance", "Systematic execution"], bonus: 0.25}
     ],
     antiPatterns: [
-      {traits: ["Poor writing", "Technical confusion"], penalty: 0.3}
+      {traits: ["Creative spontaneity", "Variety seeking"], penalty: 0.2}
     ],
     environment: "Writing-focused, technical, documentation"
   },
 
   "Translator": {
     corePattern: {
-      "Language skills": [7, 9],
-      "Cultural knowledge": [6, 9],
-      "Attention to detail": [6, 9],
-      "Research skills": [4, 8]
+      "Written communication strength": [8, 10],
+      "Cultural adaptability": [7, 10],
+      "Attention to detail": [7, 10],
+      "Learning orientation": [6, 9]
     },
     synergies: [
-      {traits: ["Writing ability", "Cultural sensitivity"], bonus: 0.2},
-      {traits: ["Subject expertise", "Accuracy"], bonus: 0.15}
+      {traits: ["Active listening skills", "Empathy and understanding"], bonus: 0.25},
+      {traits: ["Memory retention", "Information processing speed"], bonus: 0.2}
     ],
     antiPatterns: [
-      {traits: ["Poor language skills", "Cultural insensitivity"], penalty: 0.3}
+      {traits: ["Independent judgment", "Autonomous work capability"], penalty: 0.1}
     ],
     environment: "Language-focused, cultural, accuracy-critical"
   },
 
   "Localization Manager": {
     corePattern: {
-      "Project management": [5, 9],
-      "Cultural knowledge": [6, 9],
-      "Language skills": [5, 9],
-      "Quality focus": [5, 9]
+      "Project management": [7, 10],
+      "Cultural adaptability": [7, 10],
+      "Communication abilities": [6, 9],
+      "Team collaboration skills": [5, 8]
     },
     synergies: [
-      {traits: ["Cross-cultural communication", "Team coordination"], bonus: 0.2},
-      {traits: ["Process management", "Quality assurance"], bonus: 0.15}
+      { "traits": ["Strategic thinking", "Big picture thinking"], "bonus": 0.3 },
+      { "traits": ["Conflict resolution ability", "Collaborative spirit"], "bonus": 0.25 }
     ],
     antiPatterns: [
-      {traits: ["Poor coordination", "Cultural blindness"], penalty: 0.2}
+      { "traits": ["Autonomous work capability", "Self-directed work"], "penalty": 0.1 }
     ],
     environment: "International, project-based, cultural coordination"
   },
 
   "Translation Quality Specialist": {
     corePattern: {
-      "Language expertise": [7, 9],
-      "Quality assessment": [6, 9],
-      "Attention to detail": [7, 9],
-      "Critical thinking": [5, 9]
+      "Attention to detail": [8, 10],
+      "Analytical reasoning": [7, 10],
+      "Focuses on processes": [7, 10],
+      "Cultural adaptability": [6, 9]
     },
     synergies: [
-      {traits: ["Linguistic analysis", "Error detection"], bonus: 0.25},
-      {traits: ["Cultural accuracy", "Consistency checking"], bonus: 0.15}
+      { "traits": ["Works systematically", "Focuses on processes"], "bonus": 0.3 },
+      { "traits": ["Documentation skills", "Written communication strength"], "bonus": 0.25 }
     ],
     antiPatterns: [
-      {traits: ["Inaccuracy", "Poor judgment"], penalty: 0.3}
+      { "traits": ["Creative spontaneity", "Variety and change comfort"], "penalty": 0.25 }
     ],
     environment: "Quality-focused, linguistic, accuracy-critical"
   },
 
   "Diplomas Writer": {
     corePattern: {
-      "Academic writing": [6, 9],
-      "Research skills": [6, 9],
-      "Subject expertise": [5, 9],
-      "Analytical thinking": [5, 9]
+      "Written communication strength": [8, 10],
+      "Research and analysis": [7, 10],
+      "Analytical reasoning": [7, 10],
+      "Attention to detail": [7, 10]
     },
     synergies: [
-      {traits: ["Critical analysis", "Citation skills"], bonus: 0.2},
-      {traits: ["Time management", "Academic standards"], bonus: 0.15}
+      {traits: ["Complex problem handling", "Critical thinking"], bonus: 0.3},
+      {traits: ["Documentation skills", "Quality assurance"], bonus: 0.25}
     ],
     antiPatterns: [
-      {traits: ["Poor research", "Plagiarism tendency"], penalty: 0.4}
+      {traits: ["Creative spontaneity", "Variety seeking"], penalty: 0.2}
     ],
     environment: "Academic, research-focused, writing-intensive"
   },
@@ -816,52 +841,52 @@ export const professionProfiles = {
   // Support & Implementation
   "Software Implementation Specialist": {
     corePattern: {
-      "Technical knowledge": [5, 9],
-      "Problem-solving": [5, 9],
-      "Communication skills": [5, 8],
-      "Customer focus": [4, 8]
+      "Technical proficiency": [7, 10],
+      "Problem-solving expertise": [6, 9],
+      "Communication abilities": [6, 9],
+      "Client-facing confidence": [5, 8]
     },
     synergies: [
-      {traits: ["Training ability", "Process understanding"], bonus: 0.2},
-      {traits: ["Patience", "Troubleshooting"], bonus: 0.15}
+      {traits: ["Teaching and mentoring", "Active listening skills"], bonus: 0.3},
+      {traits: ["Quality assurance", "Systematic execution"], bonus: 0.25}
     ],
     antiPatterns: [
-      {traits: ["Poor technical skills", "Impatience"], penalty: 0.2}
+      {traits: ["Independent judgment", "Autonomous work capability"], penalty: 0.1}
     ],
     environment: "Client-facing, technical, implementation-focused"
   },
 
-  "Software Support Specialist": {
-    corePattern: {
-      "Technical troubleshooting": [5, 9],
-      "Patience": [6, 9],
-      "Communication skills": [5, 9],
-      "Problem-solving": [5, 9]
-    },
-    synergies: [
-      {traits: ["Empathy", "Persistence"], bonus: 0.2},
-      {traits: ["Documentation", "Process following"], bonus: 0.15}
-    ],
-    antiPatterns: [
-      {traits: ["Impatience", "Poor communication"], penalty: 0.2}
-    ],
-    environment: "Support-focused, problem-solving, customer service"
+"Software Support Specialist": {
+  corePattern: {
+    "Technical proficiency": [6, 9],
+    "Active listening skills": [6, 9],
+    "Patience and persistence": [6, 9],
+    "Client-facing confidence": [5, 8]
   },
+  synergies: [
+    { "traits": ["Empathy and understanding", "Cultural adaptability"], "bonus": 0.3 },
+    { "traits": ["Documentation skills", "Focuses on processes"], "bonus": 0.25 }
+  ],
+  antiPatterns: [
+    { "traits": ["Autonomous work capability", "Independent judgment"], "penalty": 0.1 }
+  ],
+  environment: "Support-focused, problem-solving, customer service"
+},
 
   // Research
   "Researcher": {
     corePattern: {
-      "Analytical thinking": [6, 9],
-      "Research methodology": [6, 9],
-      "Attention to detail": [6, 9],
-      "Persistence": [5, 9]
+      "Analytical reasoning": [8, 10],
+      "Research and analysis": [8, 10],
+      "Attention to detail": [7, 10],
+      "Patience and persistence": [7, 10]
     },
     synergies: [
-      {traits: ["Critical thinking", "Data analysis"], bonus: 0.2},
-      {traits: ["Writing skills", "Statistical knowledge"], bonus: 0.15}
+      {traits: ["Complex problem handling", "Critical thinking"], bonus: 0.35},
+      {traits: ["Documentation skills", "Quality assurance"], bonus: 0.3}
     ],
     antiPatterns: [
-      {traits: ["Impatience", "Poor methodology"], penalty: 0.2}
+      {traits: ["Creative spontaneity", "Variety seeking"], penalty: 0.25}
     ],
     environment: "Academic, analytical, detail-oriented"
   },
@@ -869,17 +894,17 @@ export const professionProfiles = {
   // Transportation
   "Taxi Driver": {
     corePattern: {
-      "Driving skills": [6, 9],
-      "Navigation": [5, 9],
-      "Customer service": [3, 8],
-      "Stress tolerance": [4, 8]
+      "Client-facing confidence": [6, 9],
+      "Adaptability to change": [6, 9],
+      "Conflict resolution ability": [5, 8],
+      "Patience and persistence": [5, 8]
     },
     synergies: [
-      {traits: ["Local knowledge", "Communication"], bonus: 0.15},
-      {traits: ["Patience", "Safety awareness"], bonus: 0.2}
+      {traits: ["Active listening skills", "Cultural adaptability"], bonus: 0.2},
+      {traits: ["Patience and persistence", "Service orientation"], bonus: 0.15}
     ],
     antiPatterns: [
-      {traits: ["Poor driving", "Anger issues"], penalty: 0.3}
+      {traits: ["Independent judgment", "Autonomous work capability"], penalty: 0.1}
     ],
     environment: "Driving-based, customer interaction, flexible hours"
   },
@@ -887,17 +912,17 @@ export const professionProfiles = {
   // Entrepreneurship
   "Vending Machine Owner": {
     corePattern: {
-      "Business sense": [4, 8],
-      "Location analysis": [4, 8],
-      "Maintenance skills": [3, 7],
-      "Financial management": [4, 8]
+      "Strategic thinking": [5, 8],
+      "Research and analysis": [4, 8],
+      "Technical proficiency": [3, 7],
+      "Financial motivation": [4, 8]
     },
     synergies: [
-      {traits: ["Market research", "Customer understanding"], bonus: 0.2},
-      {traits: ["Efficiency", "Cost management"], bonus: 0.15}
+      { traits: ["Problem-solving expertise", "Decision-making confidence"], bonus: 0.2 },
+      { traits: ["Quality assurance", "Systematic execution"], bonus: 0.15 }
     ],
     antiPatterns: [
-      {traits: ["Poor business sense", "Neglect"], penalty: 0.2}
+      { traits: ["Creative spontaneity", "Variety seeking"], penalty: 0.2 }
     ],
     environment: "Entrepreneurial, location-dependent, maintenance-required"
   },
@@ -905,70 +930,372 @@ export const professionProfiles = {
   // Additional Roles
   "Content Creator": {
     corePattern: {
-      "Creativity": [6, 9],
-      "Communication skills": [5, 9],
-      "Social media savvy": [5, 9],
-      "Consistency": [4, 8]
+      "Creative thinking": [6, 9],
+      "Communication abilities": [5, 9],
+      "Presentation skills": [5, 8],
+      "Achievement orientation": [4, 8]
     },
     synergies: [
-      {traits: ["Audience understanding", "Storytelling"], bonus: 0.2},
-      {traits: ["Visual skills", "Trend awareness"], bonus: 0.15}
+      {traits: ["Client-facing confidence", "Cultural adaptability"], bonus: 0.2},
+      {traits: ["Artistic and creative abilities", "Design and aesthetics"], bonus: 0.15}
     ],
     antiPatterns: [
-      {traits: ["Inconsistency", "Poor communication"], penalty: 0.2}
+      {traits: ["Routine work satisfaction", "Process-focused approach"], penalty: 0.2}
     ],
     environment: "Creative, digital, audience-focused"
   },
 
   "Virtual Assistant": {
     corePattern: {
-      "Organization": [5, 9],
-      "Communication skills": [5, 9],
-      "Technology proficiency": [4, 8],
-      "Multitasking": [5, 9]
+      "Organization and planning": [5, 9],
+      "Communication abilities": [5, 9],
+      "Technical proficiency": [4, 8],
+      "Multitasking capability": [5, 9]
     },
     synergies: [
       {traits: ["Time management", "Attention to detail"], bonus: 0.2},
-      {traits: ["Reliability", "Proactive approach"], bonus: 0.15}
+      {traits: ["Quality assurance", "Systematic execution"], bonus: 0.15}
     ],
     antiPatterns: [
-      {traits: ["Disorganization", "Poor communication"], penalty: 0.2}
+      {traits: ["Independent judgment", "Creative spontaneity"], penalty: 0.2}
     ],
     environment: "Remote, varied tasks, client-focused"
   },
 
   "Event Coordinator": {
     corePattern: {
-      "Organization": [6, 9],
-      "Communication skills": [6, 9],
-      "Stress management": [5, 9],
-      "Attention to detail": [6, 9]
+      "Organization and planning": [6, 9],
+      "Networking comfort": [6, 9],
+      "Multitasking capability": [5, 9],
+      "Adaptability to change": [5, 9]
     },
     synergies: [
-      {traits: ["Creativity", "Problem-solving"], bonus: 0.2},
-      {traits: ["Vendor management", "Timeline coordination"], bonus: 0.15}
+      { "traits": ["Creative thinking", "Team collaboration skills"], "bonus": 0.2 },
+      { "traits": ["Leadership capability", "Project management"], "bonus": 0.15 }
     ],
     antiPatterns: [
-      {traits: ["Disorganization", "Poor stress management"], penalty: 0.3}
+      { "traits": ["Autonomous work capability", "Independent judgment"], "penalty": 0.3 }
     ],
     environment: "Event-focused, high-pressure, coordination-heavy"
   },
 
   "Social Media Manager": {
     corePattern: {
-      "Social media expertise": [6, 9],
-      "Communication skills": [6, 9],
-      "Creativity": [5, 8],
-      "Analytics understanding": [4, 8]
+      "Creative thinking": [6, 9],
+      "Communication abilities": [6, 9],
+      "Artistic and creative abilities": [5, 8],
+      "Data analysis capability": [4, 8]
     },
     synergies: [
-      {traits: ["Trend awareness", "Community building"], bonus: 0.2},
-      {traits: ["Visual design", "Content strategy"], bonus: 0.15}
+      {traits: ["Cultural adaptability", "Client-facing confidence"], bonus: 0.2},
+      {traits: ["Design and aesthetics", "Presentation skills"], bonus: 0.15}
     ],
     antiPatterns: [
-      {traits: ["Poor communication", "Lack of creativity"], penalty: 0.2}
+      {traits: ["Technical proficiency", "Process-focused approach"], penalty: 0.2}
     ],
     environment: "Digital, creative, community-focused"
-  }
+  },
 
+  "Remote Software Engineer": {
+    corePattern: {
+      "Analytical reasoning": [7, 10],
+      "Logical reasoning": [7, 10],
+      "Technical proficiency": [6, 10],
+      "Remote work effectiveness": [8, 10],
+      "Autonomous work capability": [7, 10]
+    },
+    synergies: [
+      {traits: ["Creative thinking", "Abstract thinking"], bonus: 0.2},
+      {traits: ["Systematic execution", "Time management"], bonus: 0.2}
+    ],
+    antiPatterns: [
+      {traits: ["Open office comfort", "Extroverted energy"], penalty: 0.15}
+    ],
+    environment: "Fully remote technical environment requiring self-direction"
+  },
+
+  "Open Office UX Designer": {
+    corePattern: {
+      "Creative thinking": [7, 10],
+      "Design and aesthetics": [7, 10],
+      "Open office comfort": [6, 9],
+      "Noise resilience": [5, 8],
+      "Collaborative spirit": [6, 9]
+    },
+    synergies: [
+      {traits: ["Client-facing confidence", "Cultural adaptability"], bonus: 0.25},
+      {traits: ["Visual acuity", "Environmental adaptability"], bonus: 0.2}
+    ],
+    antiPatterns: [
+      {traits: ["Remote work effectiveness", "Structured environment thriving"], penalty: 0.2}
+    ],
+    environment: "Collaborative open office with frequent team interactions"
+  },
+
+  "Management Consultant": {
+    corePattern: {
+      "Strategic thinking": [8, 10],
+      "Travel adaptability": [7, 10],
+      "Assertive communication": [7, 10],
+      "Work-life integration": [3, 6],
+      "Recognition seeking": [6, 9]
+    },
+    synergies: [
+      {traits: ["Problem-solving expertise", "Big picture thinking"], bonus: 0.3},
+      {traits: ["Presentation skills", "Client-facing confidence"], bonus: 0.25}
+    ],
+    antiPatterns: [
+      {traits: ["Routine work satisfaction", "Security consciousness"], penalty: 0.3}
+    ],
+    environment: "High-travel advisory role with demanding schedule"
+  },
+
+  "Hospital Nurse": {
+    corePattern: {
+      "Empathy and understanding": [8, 10],
+      "Physical endurance": [7, 10],
+      "Temperature adaptability": [6, 9],
+      "Service orientation": [7, 10],
+      "Work-life integration": [4, 7]
+    },
+    synergies: [
+      {traits: ["Active listening skills", "Emotional intelligence"], bonus: 0.3},
+      {traits: ["Patience and persistence", "Crisis management"], bonus: 0.25}
+    ],
+    antiPatterns: [
+      {traits: ["Sedentary work comfort", "Remote work effectiveness"], penalty: 0.25}
+    ],
+    environment: "Fast-paced hospital setting with shift work"
+  },
+
+  "Online Teacher": {
+    corePattern: {
+      "Teaching and mentoring": [8, 10],
+      "Remote work effectiveness": [7, 10],
+      "Auditory processing": [6, 9],
+      "Educational passion": [7, 10],
+      "Autonomy valuing": [6, 9]
+    },
+    synergies: [
+      {traits: ["Presentation skills", "Technical proficiency"], bonus: 0.25},
+      {traits: ["Light variation tolerance", "Adaptability to change"], bonus: 0.15}
+    ],
+    antiPatterns: [
+      {traits: ["Open office comfort", "Physical activity integration"], penalty: 0.2}
+    ],
+    environment: "Virtual classroom with flexible scheduling"
+  },
+
+  "Government Analyst": {
+    corePattern: {
+      "Analytical reasoning": [7, 10],
+      "Security consciousness": [8, 10],
+      "Stability preference": [7, 10],
+      "Reflective depth": [6, 9]
+    },
+    synergies: [
+      { "traits": ["Attention to detail", "Focuses on processes"], "bonus": 0.3 },
+      { "traits": ["Documentation skills", "Works systematically"], "bonus": 0.25 }
+    ],
+    antiPatterns: [
+      { "traits": ["Creative spontaneity", "Variety seeking"], "penalty": 0.3 }
+    ],
+    environment: "Stable government office with structured processes"
+  },
+
+  "Commission Sales Agent": {
+    corePattern: {
+      "Sales and persuasion": [8, 10],
+      "Financial motivation": [9, 10],
+      "Recognition seeking": [8, 10],
+      "Client-facing confidence": [7, 10]
+    },
+    synergies: [
+      { "traits": ["Extroverted energy", "Networking comfort"], "bonus": 0.3 },
+      { "traits": ["Competitive motivation", "Achievement orientation"], "bonus": 0.25 }
+    ],
+    antiPatterns: [
+      { "traits": ["Security consciousness", "Stability preference"], "penalty": 0.3 }
+    ],
+    environment: "Performance-based sales with variable income"
+  },
+
+  "Laboratory Researcher": {
+    corePattern: {
+      "Research and analysis": [8, 10],
+      "Attention to detail": [8, 10],
+      "Sedentary work comfort": [7, 10],
+      "Light variation tolerance": [6, 9],
+      "Purpose-driven work": [6, 9]
+    },
+    synergies: [
+      {traits: ["Analytical reasoning", "Complex problem handling"], bonus: 0.35},
+      {traits: ["Patience and persistence", "Quality assurance"], bonus: 0.25}
+    ],
+    antiPatterns: [
+      {traits: ["Physical activity integration", "Extroverted energy"], penalty: 0.25}
+    ],
+    environment: "Controlled laboratory setting with precise measurements"
+  },
+
+    "Risk Analyst": {
+    corePattern: {
+      "Analytical reasoning": [8, 10],
+      "Logical reasoning": [7, 10],
+      "Pattern recognition": [7, 10],
+      "Complex problem handling": [7, 10]
+    },
+    synergies: [
+      { "traits": ["Mathematical skills", "Stability preference"], "bonus": 0.3 },
+      { "traits": ["Systematic execution", "Attention to detail"], "bonus": 0.25 }
+    ],
+    antiPatterns: [
+      { "traits": ["Creative spontaneity", "Variety seeking"], "penalty": 0.2 }
+    ],
+    environment: "Data-driven, risk-focused, financial institutions"
+  },
+
+  "Corporate Trainer": {
+    corePattern: {
+      "Presentation skills": [7, 10],
+      "Teaching and mentoring": [7, 10],
+      "Active listening skills": [6, 9],
+      "Empathy and understanding": [6, 9],
+      "Assertive communication": [6, 9]
+    },
+    synergies: [
+      { "traits": ["Diplomatic communication", "Team collaboration skills"], "bonus": 0.3 },
+      { "traits": ["Training and development", "Learning orientation"], "bonus": 0.25 }
+    ],
+    antiPatterns: [
+      { "traits": ["Autonomous work capability", "Independent judgment"], "penalty": 0.2 }
+    ],
+    environment: "Workshops, corporate settings, team-based learning"
+  },
+
+  "Policy Advisor": {
+    corePattern: {
+      "Research and analysis": [8, 10],
+      "Strategic thinking": [7, 10],
+      "Service orientation": [7, 10],
+      "Written communication strength": [7, 10],
+      "Big picture thinking": [6, 9]
+    },
+    synergies: [
+      { "traits": ["Social impact drive", "Justice commitment"], "bonus": 0.3 },
+      { "traits": ["Reflective depth", "Information processing speed"], "bonus": 0.2 }
+    ],
+    antiPatterns: [
+      { "traits": ["Creative spontaneity", "Variety and change comfort"], "penalty": 0.2 }
+    ],
+    environment: "Government offices, policy think tanks, structured environment"
+  },
+
+  "Emergency Response Coordinator": {
+    corePattern: {
+      "Crisis management": [8, 10],
+      "Decision-making confidence": [8, 10],
+      "Adaptability to change": [7, 10],
+      "Team collaboration skills": [7, 10],
+      "Multitasking capability": [6, 9]
+    },
+    synergies: [
+      { "traits": ["Leadership capability", "Conflict resolution ability"], "bonus": 0.3 },
+      { "traits": ["Stress management", "Physical endurance"], "bonus": 0.25 }
+    ],
+    antiPatterns: [
+      { "traits": ["Prefers routine tasks", "Works systematically"], "penalty": 0.3 }
+    ],
+    environment: "High-pressure crisis centers with unpredictable demands"
+  },
+
+  "Sustainability Consultant": {
+    corePattern: {
+      "Environmental stewardship": [8, 10],
+      "Strategic thinking": [7, 10],
+      "Research and analysis": [7, 10],
+      "Cultural adaptability": [6, 9],
+      "Networking comfort": [6, 9]
+    },
+    synergies: [
+      { "traits": ["Conceptual thinking", "Innovation passion"], "bonus": 0.3 },
+      { "traits": ["Collaborative spirit", "Service orientation"], "bonus": 0.25 }
+    ],
+    antiPatterns: [
+      { "traits": ["Routine work satisfaction", "Remote work effectiveness"], "penalty": 0.2 }
+    ],
+    environment: "Client-facing, environmental organizations, hybrid work"
+  },
+
+  "Air Traffic Controller": {
+    corePattern: {
+      "Attention to detail": [8, 10],
+      "Sustained concentration": [8, 10],
+      "Quick learning ability": [7, 10],
+      "Auditory processing": [7, 10],
+      "Stress management": [7, 10]
+    },
+    synergies: [
+      { "traits": ["Decision-making confidence", "Team collaboration skills"], "bonus": 0.35 },
+      { "traits": ["Task switching agility", "Adaptability to change"], "bonus": 0.25 }
+    ],
+    antiPatterns: [
+      { "traits": ["Extroverted energy", "Social interaction focus"], "penalty": 0.2 }
+    ],
+    environment: "High-stakes control tower with intense monitoring duties"
+  },
+
+  "Business Development Executive": {
+    corePattern: {
+      "Sales and persuasion": [8, 10],
+      "Negotiation expertise": [7, 10],
+      "Networking comfort": [7, 10],
+      "Competitive motivation": [7, 10],
+      "Financial motivation": [6, 9]
+    },
+    synergies: [
+      { "traits": ["Confident public speaking", "Presentation skills"], "bonus": 0.3 },
+      { "traits": ["Strategic thinking", "Growth mindset"], "bonus": 0.25 }
+    ],
+    antiPatterns: [
+      { "traits": ["Security consciousness", "Prefers routine tasks"], "penalty": 0.25 }
+    ],
+    environment: "Fast-paced, client-driven, target-oriented"
+  },
+
+  "Lab Technician": {
+    corePattern: {
+      "Attention to detail": [8, 10],
+      "Quality assurance": [7, 10],
+      "Precision manual dexterity": [7, 10],
+      "Memory retention": [6, 9],
+      "Systematic execution": [6, 9]
+    },
+    synergies: [
+      { "traits": ["Scientific method application", "Pattern recognition"], "bonus": 0.3 },
+      { "traits": ["Team collaboration skills", "Documentation skills"], "bonus": 0.25 }
+    ],
+    antiPatterns: [
+      { "traits": ["Creative spontaneity", "Variety seeking"], "penalty": 0.2 }
+    ],
+    environment: "Laboratory setting with repetitive but precise procedures"
+  },
+
+  "AI Ethics Officer": {
+    corePattern: {
+      "Ethical reasoning": [8, 10],
+      "Critical thinking": [7, 10],
+      "Justice commitment": [7, 10],
+      "Research and analysis": [7, 10],
+      "Intellectual stimulation": [6, 9]
+    },
+    synergies: [
+      { "traits": ["Strategic thinking", "Social impact drive"], "bonus": 0.3 },
+      { "traits": ["Policy writing", "Diplomatic communication"], "bonus": 0.25 }
+    ],
+    antiPatterns: [
+      { "traits": ["Financial motivation", "Competitive drive"], "penalty": 0.2 }
+    ],
+    environment: "Tech companies, research labs, ethics committees"
+  }
 };

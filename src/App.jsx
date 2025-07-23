@@ -2,44 +2,76 @@ import React, { useState } from 'react';
 import { Brain, Users, Briefcase, Award, Heart, Target, Activity, TrendingUp } from 'lucide-react';
 import './App.css';
 import './index.css';
-import { dimensions, flattenedDimensions, categoryDescriptions } from './data/dimensions';
-import { professionProfiles } from './data/professionProfiles';
+import { dimensions, allTraits, categoryDescriptions } from './data/dimensions';
+import { professionProfiles, genericProfession } from './data/professionProfiles';
+
+const TOTAL_POSSIBLE = allTraits.length * 9;
 
 const HolisticProfessionPredictor = () => {
-  const [profile, setProfile] = useState({});
+  // Initialize state with all traits set to 5
+  const [profile, setProfile] = useState(() => {
+    const defaultProfile = {};
+    allTraits.forEach(trait => {
+      defaultProfile[trait] = 5;
+    });
+    return defaultProfile;
+  });
+
   const [prediction, setPrediction] = useState(null);
 
-  const handleChange = (category, trait, value) => {
-    const key = `${category}-${trait}`;
-    setProfile(prev => ({
-      ...prev,
-      [key]: parseFloat(value)
-    }));
-  };
+const handleChange = (trait, value) => {
+  setProfile(prev => ({
+    ...prev,
+    [trait]: parseFloat(value)
+  }));
+};
 
   const calculateHolisticFit = () => {
     const results = {};
     
     Object.entries(professionProfiles).forEach(([profession, profProfile]) => {
       let baseScore = 0;
-      let maxBase = 0;
-      let matchedTraits = 0;
+      // let matchedTraits = 0;
 
-      Object.entries(profProfile.corePattern).forEach(([trait, [min, max]]) => {
-        const userValue = getUserTraitValue(trait);
-        if (userValue >= min && userValue <= max) {
-          baseScore += userValue;
-          matchedTraits++;
-        } else {
-          const distance = userValue < min ? min - userValue : userValue - max;
-          baseScore += Math.max(0, userValue - distance * 0.5);
-        }
-        maxBase += 9;
-      });
+      // Object.entries(profProfile.corePattern).forEach(([trait, [min, max]]) => {
+      //   const userValue = profile[trait] ?? 5;
+      //   if (userValue >= max) {
+      //     baseScore += max;  // Cap at maximum
+      //     matchedTraits++;
+      //   } else if (userValue >= min) {
+      //     baseScore += userValue;  // Full points within range
+      //     matchedTraits++;
+      //   } else {
+      //     const distance = min - userValue;
+      //     baseScore += Math.max(0, userValue - distance * 0.5);  // 50% penalty
+      //   }
+      // });
+
+    // Combine generic and core traits
+    const scoringTraits = {
+      ...genericProfession.traitRanges, // All traits [0,9]
+      ...profProfile.corePattern        // Override with core ranges
+    };
+
+    // Rest of your scoring logic...
+    const matchedTraits = [];
+
+    Object.entries(scoringTraits).forEach(([trait, [min, max]]) => {
+      const userValue = profile[trait] ?? 5;
+      const isCoreTrait = profProfile.corePattern[trait];
+      // Your existing scoring logic
+      if (userValue >= max) baseScore += max;
+      else if (userValue >= min) baseScore += userValue;
+      else baseScore += Math.max(0, userValue - (min - userValue) * 0.5);
       
+      if (isCoreTrait && userValue >= min) {
+        matchedTraits.push(trait);
+      }
+    });
+
       let synergyBonus = 0;
-      profProfile.synergies.forEach(({traits, bonus}) => {
-        const traitValues = traits.map(t => getUserTraitValue(t));
+      profProfile.synergies?.forEach(({traits, bonus}) => {
+        const traitValues = traits.map(t => profile[t] ?? 5);
         const avgValue = traitValues.reduce((a, b) => a + b, 0) / traitValues.length;
         if (avgValue >= 5) {
           synergyBonus += bonus * avgValue;
@@ -47,8 +79,8 @@ const HolisticProfessionPredictor = () => {
       });
       
       let antiPenalty = 0;
-      profProfile.antiPatterns.forEach(({traits, penalty}) => {
-        const traitValues = traits.map(t => getUserTraitValue(t));
+      profProfile.antiPatterns?.forEach(({traits, penalty}) => {
+        const traitValues = traits.map(t => profile[t] ?? 5);
         const avgValue = traitValues.reduce((a, b) => a + b, 0) / traitValues.length;
         if (avgValue >= 7) {
           antiPenalty += penalty * avgValue;
@@ -56,7 +88,7 @@ const HolisticProfessionPredictor = () => {
       });
       
       const rawScore = baseScore + synergyBonus - antiPenalty;
-      const percentage = Math.min(100, Math.max(0, (rawScore / maxBase) * 100));
+      const percentage = Math.min(100, Math.max(0, (rawScore / TOTAL_POSSIBLE) * 100));
       
       results[profession] = {
         percentage: Math.round(percentage * 100) / 100,
@@ -69,20 +101,7 @@ const HolisticProfessionPredictor = () => {
       };
     });
     
-    const sortedResults = Object.entries(results)
-      .sort(([,a], [,b]) => b.percentage - a.percentage);
-    
-    setPrediction(sortedResults);
-  };
-
-  const getUserTraitValue = (trait) => {
-    for (const [category, traits] of Object.entries(flattenedDimensions)) {
-      if (traits.includes(trait)) {
-        const key = `${category}-${trait}`;
-        return profile[key] || 0;
-      }
-    }
-    return 0;
+    setPrediction(Object.entries(results).sort(([,a], [,b]) => b.percentage - a.percentage));
   };
 
   const getIconForCategory = (category) => {
@@ -135,20 +154,30 @@ const HolisticProfessionPredictor = () => {
                       <div className="traits-list">
                         {traits.map(trait => (
                           <div key={trait} className="trait-item">
-                            <div className="trait-name">{trait}</div>
+<div className="trait-name">
+  {trait}
+  {trait.includes("detail") && " 🔬"}
+  {trait.includes("Physical") && " 💪"}
+  {trait.includes("Visual") && " 👀"}
+  {trait.includes("Auditory") && " 👂"}
+  {/* {trait.includes("Cultural" or "Language" or 'language' or 'big') && " 🌍"}
+  {trait.includes("Creative" or "Artistic" or "Design" or 'design') && " 🎨"} */}
+  {trait.includes("Analytical") && " 🔍"}
+  {trait.includes("Communication") && " 💬"}
+</div>
                             <div className="slider-container">
                               <span className="slider-label">Low</span>
-                              <input
-                                type="range"
-                                min="1"
-                                max="10"
-                                value={profile[`${categoryKey}-${trait}`] || 5}
-                                onChange={(e) => handleChange(categoryKey, trait, e.target.value)}
-                                className="slider"
-                              />
+                                <input
+                                  type="range"
+                                  min="1"
+                                  max="10"
+                                  value={profile[trait] || 5}
+                                  onChange={(e) => handleChange(trait, e.target.value)}
+                                  className="slider"
+                                />
                               <span className="slider-label">High</span>
                               <span className="slider-value">
-                                {profile[`${categoryKey}-${trait}`] || 5}
+                                {profile[trait] || 5}
                               </span>
                             </div>
                           </div>
@@ -190,8 +219,8 @@ const HolisticProfessionPredictor = () => {
 
                 <div className="result-metrics">
                   <div className="metric-row">
-                    <span className="metric-label">Core Traits:</span>
-                    <span className="metric-value">{data.matchedTraits}/{data.totalTraits} aligned</span>
+                    <span className="metric-label">Key Strengths:</span>
+                    <span className="metric-value">{data.matchedTraits}</span>
                   </div>
                   <div className="metric-row">
                     <span className="metric-label">Base Score:</span>
@@ -200,10 +229,6 @@ const HolisticProfessionPredictor = () => {
                   <div className="metric-row positive">
                     <span className="metric-label">Synergy Bonus:</span>
                     <span className="metric-value">+{data.synergyBonus}</span>
-                  </div>
-                  <div className="metric-row negative">
-                    <span className="metric-label">Pattern Penalty:</span>
-                    <span className="metric-value">-{data.antiPenalty}</span>
                   </div>
                 </div>
               </div>
@@ -215,7 +240,7 @@ const HolisticProfessionPredictor = () => {
             <div className="algorithm-list">
               <div className="algorithm-item"><strong>Core Pattern Matching:</strong> Evaluates if your traits fall within optimal ranges for each profession</div>
               <div className="algorithm-item"><strong>Synergy Detection:</strong> Bonus points when complementary traits work together</div>
-              <div className="algorithm-item"><strong>Anti-Pattern Recognition:</strong> Identifies potentially conflicting trait combinations</div>
+              <div className="algorithm-item"><strong>Anti-Pattern Recognition:</strong> Identifies potentially conflicting trait combinations. This doesn't account for assistive technologies. This role may require more [trait] than you prefer. Consider asking about accommodations.</div>
               <div className="algorithm-item"><strong>Environmental Fit:</strong> Considers how your profile matches work environment needs</div>
             </div>
           </div>

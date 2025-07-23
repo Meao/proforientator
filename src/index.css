@@ -138,6 +138,7 @@ body {
 .slider {
   flex: 1;
   height: 6px;
+  appearance: none;
   -webkit-appearance: none;
   background: #e5e7eb;
   border-radius: 3px;
@@ -309,4 +310,98 @@ body {
 
 .algorithm-item {
   margin-bottom: 8px;
+}
+
+/* Focus states */
+.slider:focus {
+  box-shadow: 0 0 0 2px #a78bfa;
+}
+
+.calculate-button:focus {
+  outline: 2px solid #a78bfa;
+  outline-offset: 2px;
+}
+
+/* Loading state */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111827;
+    color: #e5e7eb;
+  }
+
+  .results-container {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  .app-container,
+  .dimension-header,
+  .dimension-card,
+  .trait-category,
+  .trait-item,
+  .result-card,
+  .algorithm-info {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  .title,
+  .section-title,
+  .dimension-title,
+  .profession-name,
+  .metric-value {
+    color: #f9fafb;
+  }
+
+  .subtitle,
+  .dimension-description,
+  .environment-text,
+  .algorithm-list,
+  .trait-category-title,
+  .trait-name,
+  .metric-label {
+    color: #9ca3af;
+  }
+
+  .dimension-header {
+    background-image: linear-gradient(to right, #1f2937, #1e3a8a);
+  }
+
+  /* Slider thumb color adjustment */
+  .slider::-webkit-slider-thumb {
+    background: #8b5cf6;
+  }
+
+  /* Button gradient adjustment */
+  .calculate-button {
+    background: linear-gradient(90deg, #7c3aed 0%, #2563eb 100%);
+  }
+
+  /* Result percentage color */
+  .result-percentage {
+    color: #8b5cf6;
+  }
+
+  /* Algorithm info background */
+  .algorithm-info {
+    background-color: #1e1b4b;
+  }
+  .algorithm-title {
+    color: #a78bfa;
+  }
 }
