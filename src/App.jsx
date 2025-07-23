@@ -31,35 +31,18 @@ const handleChange = (trait, value) => {
     
     Object.entries(professionProfiles).forEach(([profession, profProfile]) => {
       let baseScore = 0;
-      // let matchedTraits = 0;
-
-      // Object.entries(profProfile.corePattern).forEach(([trait, [min, max]]) => {
-      //   const userValue = profile[trait] ?? 5;
-      //   if (userValue >= max) {
-      //     baseScore += max;  // Cap at maximum
-      //     matchedTraits++;
-      //   } else if (userValue >= min) {
-      //     baseScore += userValue;  // Full points within range
-      //     matchedTraits++;
-      //   } else {
-      //     const distance = min - userValue;
-      //     baseScore += Math.max(0, userValue - distance * 0.5);  // 50% penalty
-      //   }
-      // });
-
     // Combine generic and core traits
     const scoringTraits = {
       ...genericProfession.traitRanges, // All traits [0,9]
       ...profProfile.corePattern        // Override with core ranges
     };
 
-    // Rest of your scoring logic...
     const matchedTraits = [];
 
     Object.entries(scoringTraits).forEach(([trait, [min, max]]) => {
       const userValue = profile[trait] ?? 5;
       const isCoreTrait = profProfile.corePattern[trait];
-      // Your existing scoring logic
+
       if (userValue >= max) baseScore += max;
       else if (userValue >= min) baseScore += userValue;
       else baseScore += Math.max(0, userValue - (min - userValue) * 0.5);
@@ -118,6 +101,70 @@ const handleChange = (trait, value) => {
     return iconMap[mainCategory] || <Brain className="category-icon" />;
   };
 
+  const getTraitEmoji = (trait) => {const emojiMap = [
+
+    // Cognitive Abilities
+    [["logical thinking", "pattern recognition", "math skills"], "🧮"],
+    [["creative thinking", "abstract thinking", "design and aesthetics"], "🎨"],
+    [["fast learner", "good memory", "problem solving", "loves learning"], "📚"],
+    [["detail-oriented", "stays focused", "attention to detail"], "🔍"],
+    [["big picture thinker", "strategic thinking"], "🌐"],
+
+    // Social Skills
+    [["emotional intelligence", "helping others"], "❤️"],
+    [["persuasion", "sales and persuasion", "negotiation"], "💬"],
+    [["cultural awareness"], "🌎"],
+    [["writing skills", "technical writing", "documentation skills"], "✍️"],
+    [["public speaking", "presentation skills"], "🎤"],
+    [["conflict resolution", "collaborative", "team player"], "🤝"],
+
+    // Work Style
+    [["likes routine", "systematic", "prefers stability"], "⏱️"],
+    [["flexible schedule", "switches tasks easily", "handles change"], "🔄"],
+    [["works well remotely", "travel tolerance"], "🏠"],
+    [["self-starter", "self-directed", "autonomy & independence"], "🦸"],
+    [["decisive", "assertive"], "⚡"],
+
+    // Professional Skills
+    [["time management", "project management"], "⏳"],
+    [["technical proficiency", "research and analysis", "data analysis capability"], "💻"],
+    [["leadership capability", "training and development"], "👔"],
+    [["quality assurance"], "✅"],
+    [["public relations"], "📢"],
+
+    // Personal Traits
+    [["goal-driven", "competitive", "deadline-driven", "purpose-driven"], "🎯"],
+    [["optimistic", "patience and persistence"], "☀️"],
+    [["diplomatic", "thoughtful"], "⚖️"],
+    [["calculated risk-taking"], "🎲"],
+    [["calm under pressure", "handles crises"], "🧘"],
+
+    // Values
+    [["social impact", "justice commitment"], "🌍"],
+    [["environmental stewardship"], "🌱"],
+    [["work-life balance"], "⚖️"],
+    [["money", "recognition"], "💰"],
+
+    // Physical
+    [["physical endurance", "outdoor resilience"], "💪"],
+    [["manual dexterity", "mobility and movement"], "✋"],
+    [["good vision", "light variation tolerance"], "👀"],
+    [["good hearing", "noise tolerance"], "👂"],
+    [["smell tolerance"], "👃"],
+    [["sitting work comfort"], "🪑"],
+    [["temperature adaptability"], "🌡️"],
+    [["energy levels"], "⚡"],
+    [["handles interruptions", "multitasking"], "🔀"]
+  ];
+
+    const lowerTrait = trait.toLowerCase();
+    const match = emojiMap.find(([keywords]) =>
+      keywords.some(keyword => lowerTrait.includes(keyword))
+    );
+
+  return match ? match[1] : "";
+};
+
   return (
     <div className="app-container">
       <div className="header">
@@ -154,17 +201,9 @@ const handleChange = (trait, value) => {
                       <div className="traits-list">
                         {traits.map(trait => (
                           <div key={trait} className="trait-item">
-<div className="trait-name">
-  {trait}
-  {trait.includes("detail") && " 🔬"}
-  {trait.includes("Physical") && " 💪"}
-  {trait.includes("Visual") && " 👀"}
-  {trait.includes("Auditory") && " 👂"}
-  {/* {trait.includes("Cultural" or "Language" or 'language' or 'big') && " 🌍"}
-  {trait.includes("Creative" or "Artistic" or "Design" or 'design') && " 🎨"} */}
-  {trait.includes("Analytical") && " 🔍"}
-  {trait.includes("Communication") && " 💬"}
-</div>
+                            <div className="trait-name">
+                              {trait} {getTraitEmoji(trait)}
+                            </div>
                             <div className="slider-container">
                               <span className="slider-label">Low</span>
                                 <input
@@ -205,7 +244,7 @@ const handleChange = (trait, value) => {
           
           <div className="results-grid">
             {prediction.map(([profession, data], index) => (
-              <div key={profession} className="result-card">
+              <div className="result-card">
                 <div className="result-rank-container">
                   <span className="result-rank">#{index + 1}</span>
                   <div className="result-percentage-container">
@@ -213,23 +252,25 @@ const handleChange = (trait, value) => {
                     <div className="result-match-label">Match</div>
                   </div>
                 </div>
-                
-                <h3 className="profession-name">{profession}</h3>
-                <p className="environment-text">{data.environment}</p>
 
+                <h3 className="profession-name">{profession}</h3>
+
+                {/* Show matched core traits */}
                 <div className="result-metrics">
-                  <div className="metric-row">
-                    <span className="metric-label">Key Strengths:</span>
-                    <span className="metric-value">{data.matchedTraits}</span>
-                  </div>
-                  <div className="metric-row">
-                    <span className="metric-label">Base Score:</span>
-                    <span className="metric-value">{data.baseScore.toFixed(1)}</span>
-                  </div>
-                  <div className="metric-row positive">
-                    <span className="metric-label">Synergy Bonus:</span>
-                    <span className="metric-value">+{data.synergyBonus}</span>
-                  </div>
+                  {Object.keys(professionProfiles[profession].corePattern)
+                    .filter(trait => profile[trait] >= professionProfiles[profession].corePattern[trait][0])
+                    .map(trait => (
+                      <span key={trait} className="metric-row">
+                        ✓ {trait} {getTraitEmoji(trait)}
+                      </span>
+                    ))}
+
+                {/* Show synergy note if applicable */}
+                {data.synergyBonus > 0 && (
+                  <span className="metric-row">
+                    ★ Trait synergies (+{data.synergyBonus} points)
+                  </span>
+                )}
                 </div>
               </div>
             ))}
@@ -238,10 +279,18 @@ const handleChange = (trait, value) => {
           <div className="algorithm-info">
             <h4 className="algorithm-title">Fit Algorithm Features:</h4>
             <div className="algorithm-list">
-              <div className="algorithm-item"><strong>Core Pattern Matching:</strong> Evaluates if your traits fall within optimal ranges for each profession</div>
-              <div className="algorithm-item"><strong>Synergy Detection:</strong> Bonus points when complementary traits work together</div>
-              <div className="algorithm-item"><strong>Anti-Pattern Recognition:</strong> Identifies potentially conflicting trait combinations. This doesn't account for assistive technologies. This role may require more [trait] than you prefer. Consider asking about accommodations.</div>
-              <div className="algorithm-item"><strong>Environmental Fit:</strong> Considers how your profile matches work environment needs</div>
+              <div className="algorithm-item">
+                <strong>Core Pattern Matching:</strong> Evaluates if your traits match optimal ranges for each profession
+              </div>
+              <div className="algorithm-item">
+                <strong>Synergy Detection:</strong> Identifies beneficial trait combinations
+              </div>
+              <div className="algorithm-item">
+                <strong>Potential Considerations:</strong> Flags trait mismatches where accommodations or adaptations may be needed
+              </div>
+              <div className="algorithm-item">
+                <strong>Environmental Fit:</strong> Assesses alignment with physical/sensory work requirements
+              </div>
             </div>
           </div>
         </div>

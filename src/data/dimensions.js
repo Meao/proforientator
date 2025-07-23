@@ -1,83 +1,66 @@
 const dimensions = {
   "Thinking Style": {
-    "Analytical Processing": [
-      "Analytical reasoning",
-      "Logical reasoning",
+    "Analytical Skills": [
+      "Logical thinking",
       "Pattern recognition",
-      "Mathematical skills"
+      "Math skills"
     ],
-    "Creative Processing": [
+    "Creativity": [
       "Creative thinking",
-      "Abstract thinking",
-      "Conceptual thinking"
+      "Abstract thinking"
     ],
-    "Information Processing": [
-      "Quick learning ability",
-      "Memory retention",
-      "Information processing speed",
-      "Complex problem handling"
+    "Learning": [
+      "Fast learner",
+      "Good memory",
+      "Problem solving"
     ],
-    "Focus & Attention": [
-      "Attention to detail",
-      "Big picture thinking",
-      "Sustained concentration",
-      "Multitasking capability"
+    "Focus": [
+      "Detail-oriented",
+      "Big picture thinker",
+      "Stays focused",
+      "Multitasking"
     ]
   },
-  "Social & Communication": {
-    "Interpersonal Skills": [
-      "Empathy and understanding",
-      "Active listening skills",
+  "Social Skills": {
+    "People Skills": [
       "Emotional intelligence",
-      "Cultural adaptability"
+      "Persuasion",
+      "Cultural awareness"
     ],
-    "Communication Abilities": [
-      "Written communication strength",
-      "Public speaking ability",
-      "Persuasive abilities",
+    "Communication": [
+      "Writing skills",
+      "Public speaking",
       "Presentation skills"
     ],
-    "Collaboration Style": [
-      "Team collaboration skills",
-      "Conflict resolution ability",
-      "Networking comfort"
+    "Teamwork": [
+      "Conflict resolution"
     ],
-    "Social Orientation": [
-      "Extroverted energy",
-      "Helping others drive",
-      "Client-facing confidence",
-      "Teaching and mentoring"
+    "Social Energy": [
+      "Helping others"
     ]
   },
-  "Work Style & Environment": {
-    "Structure Preferences": [
-      "Thrives in structured environments",
-      "Prefers routine tasks",
-      "Focuses on processes",
-      "Works systematically"
+  "Work Style": {
+    "Structure": [
+      "Likes routine",
+      "Systematic"
     ],
-    "Independence & Autonomy": [
-      "Autonomous work capability",
-      "Self-directed work",
-      "Independent judgment",
-      "Decision-making confidence"
+    "Independence": [
+      "Self-starter",
+      "Self-directed",
+      "Decisive"
     ],
-    "Adaptability": [
-      "Variety and change comfort",
-      "Schedule flexibility",
-      "Task switching agility",
-      "Adaptability to change"
+    "Flexibility": [
+      "Flexible schedule",
+      "Switches tasks easily"
     ],
-    "Work Environment": [
-      "Effective at remote work",
-      "Comfortable in open offices",
-      "Adaptable to travel",
-      "Handles noisy environments"
+    "Environment": [
+      "Works well remotely",
+      "Travel tolerance",
+      "Noise tolerance"
     ]
   },
   "Professional Skills": {
-    "Core Competencies": [
-      "Organization and planning",
+    "Core Skills": [
       "Time management",
       "Quality assurance"
     ],
@@ -94,87 +77,76 @@ const dimensions = {
       "Training and development"
     ],
     "Customer & Sales": [
-      "Customer service excellence",
       "Sales and persuasion",
-      "Negotiation expertise",
+      "Negotiation",
       "Public relations"
     ]
   },
   "Personal Traits": {
     "Work Approach": [
-      "Meticulous attention",
-      "High standards maintenance",
-      "Methodical approach",
-      "Thoughtful planning"
+      "Attention to detail"
     ],
     "Energy & Drive": [
-      "Ambitious drive",
-      "Achievement orientation",
-      "Competitive motivation",
-      "Deadline-driven performance"
+      "Goal-driven",
+      "Competitive",
+      "Deadline-driven"
     ],
     "Personality Style": [
-      "Optimistic outlook",
+      "Optimistic",
       "Patience and persistence",
       "Calculated risk-taking"
     ],
     "Interpersonal Style": [
-      "Assertive communication",
-      "Diplomatic communication",
-      "Collaborative spirit",
-      "Reflective depth"
+      "Assertive",
+      "Diplomatic",
+      "Collaborative",
+      "Thoughtful"
     ]
   },
-  "Values & Motivations": {
-    "Purpose & Impact": [
-      "Service orientation",
-      "Social impact drive",
+  "Values": {
+    "Purpose": [
+      "Social impact",
       "Justice commitment",
       "Environmental stewardship"
     ],
     "Growth & Learning": [
-      "Learning orientation",
-      "Growth mindset",
-      "Intellectual stimulation",
-      "Educational passion"
+      "Loves learning"
     ],
-    "Work-Life Values": [
-      "Work-life integration",
-      "Autonomy valuing",
-      "Security consciousness",
-      "Stability preference"
+    "Balance": [
+      "Work-life balance",
+      "Autonomy & independence",
+      "Prefers stability"
     ],
-    "Achievement & Recognition": [
-      "Financial motivation",
-      "Recognition seeking",
-      "Purpose-driven work",
-      "Innovation passion"
+    "Motivation": [
+      "Money",
+      "Recognition",
+      "Purpose-driven"
     ]
   },
-  "Physical & Practical": {
-    "Physical Capabilities": [
+  "Physical": {
+    "Body": [
       "Physical endurance",
       "Manual dexterity",
-      "Fine motor coordination",
-      "Mobility and movement"
+      "Mobility and movement",
+      "Outdoor resilience"
     ],
     "Sensory Resilience": [
-      "Visual acuity",
-      "Auditory processing",
-      "Environmental adaptability",
-      "Light variation tolerance"
+      "Good vision",
+      "Good hearing",
+      "Light variation tolerance",
+      "Smell tolerance"
     ],
     "Work Conditions": [
-      "Sedentary work comfort",
-      "Physical activity integration",
+      "Sitting work comfort",
       "Temperature adaptability",
-      "Energy sustainability"
+      "Energy levels",
+      "Handles interruptions",
+      "Calm under pressure"
     ],
-    "Specialized Abilities": [
-      "Artistic and creative abilities",
+    "Special Abilities": [
       "Design and aesthetics",
       "Technical writing",
-      "Crisis management"
+      "Handles crises"
     ]
   }
 };
